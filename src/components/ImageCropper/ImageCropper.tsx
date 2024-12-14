@@ -3,8 +3,9 @@ import FileInput from "../FileInput/FileInput";
 import CroppieContainer from "../CroppieContainer/CroppieContainer";
 import Button from "../Button/Button";
 import CropResult from "../CropResult/CropResult";
+import DownloadButton from "../DownloadButton/DownloadButton";
 import Croppie from "croppie";
-import 'react-bootstrap'
+import 'react-bootstrap';
 
 const ImageCropper: React.FC = () => {
     const [croppieInstance, setCroppieInstance] = useState<Croppie | null>(null);
@@ -41,6 +42,9 @@ const ImageCropper: React.FC = () => {
             <CroppieContainer imageUrl={imageUrl} onInstanceReady={handleInstanceReady} />
             <Button onClick={handleCrop} label="Crop Image" />
             <CropResult image={croppedImage} />
+            {croppedImage && (
+                <DownloadButton image={croppedImage} filename="cropped-image.png" />
+            )}
         </div>
     );
 };
